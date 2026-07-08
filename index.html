@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Rehabilitation Glove | 20 Slides Version</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Rehabilitation Glove | 20 Slides Version</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<style>
 :root {
     --orange: #f97316; --orange-dark: #c2410c;
     --orange-light: rgba(249,115,22,0.11); --orange-glow: rgba(249,115,22,0.22);
@@ -60,7 +61,7 @@ strong{color:var(--g900)}
 
 /* COUNTER */
 .counter{position:fixed;bottom:22px;right:22px;z-index:200;font-family:var(--fh);
-  font-size:.75rem;font-weight:700;color:var(--g500);background:white;
+  font-size:.75rem;font-weight:700;color:var(--g500);background:var(--glass);backdrop-filter:blur(10px);
   padding:5px 13px;border-radius:100px;border:1px solid var(--g200);box-shadow:var(--shadow-card)}
 .counter span{color:var(--orange)}
 
@@ -97,7 +98,7 @@ strong{color:var(--g900)}
 .txt-sm{font-size:.82rem;color:var(--g500);line-height:1.55;margin-top:3px}
 
 /* CARDS */
-.card{background:white;border-radius:var(--rs);border:1px solid var(--g200);
+.card{background:var(--glass);backdrop-filter:blur(10px);border-radius:var(--rs);border:1px solid var(--g200);
   box-shadow:var(--shadow-card);transition:all .3s ease}
 .card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.09)}
 .card-p{padding:1.3rem}
@@ -151,7 +152,7 @@ strong{color:var(--g900)}
 .tl::before{content:'';position:absolute;top:2rem;left:0;right:0;height:3px;
   background:var(--orange-light);z-index:0}
 .tl-item{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center}
-.tl-dot{width:18px;height:18px;border-radius:50%;background:white;
+.tl-dot{width:18px;height:18px;border-radius:50%;background:var(--glass);backdrop-filter:blur(10px);
   border:3.5px solid var(--g300);margin-top:-9px;margin-bottom:1.2rem}
 .tl-dot.active{border-color:var(--orange);background:var(--orange);
   box-shadow:0 0 0 5px var(--orange-light)}
@@ -177,1056 +178,995 @@ strong{color:var(--g900)}
 .af{opacity:0}
 .as{opacity:0;transform:scale(.93)}
     </style>
-</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<style>
+/* Ultimate Features CSS */
+body { transition: background 0.5s ease, color 0.5s ease; }
+body.dark-mode {
+    --g50: #020617;
+    --g100: #0f172a;
+    --g900: #f8fafc;
+    --g600: #cbd5e1;
+    --g500: #94a3b8;
+    --glass: rgba(15, 23, 42, 0.7);
+    --glass-b: rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px rgba(0,0,0,0.5);
+    background-color: var(--g50);
+}
+body.dark-mode .bg-canvas {
+    background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+}
+body.dark-mode .bg-canvas::after {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+}
+.card, .glass, .stat-card { transition: background 0.5s, border-color 0.5s, box-shadow 0.5s; }
+.anim { opacity: 1; transform: translateY(0); }
+h1, h2, h3, h4, h5, h6, .ttl, .ttl-sm { font-family: 'Space Grotesk', sans-serif !important; }
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--orange) 0%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.cursor-dot {
+    position: fixed; top: 0; left: 0; width: 8px; height: 8px; background-color: var(--orange); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
+}
+.cursor-outline {
+    position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 2px solid var(--orange); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+.action-btn {
+    position:fixed; z-index:1000; background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.5); border-radius:50%; padding:12px; cursor:pointer; backdrop-filter:blur(10px); display:flex; align-items:center; justify-content:center;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/></head>
 <body>
+<button class="action-btn" id="theme-toggle" style="top:20px; left:20px;" title="Toggle Theme"><i class="ph ph-moon" style="font-size:1.5rem; color:#333;"></i></button>
+<div id="particles-js" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none; opacity:0.6;"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
 <div class="bg-canvas">
-    <div class="bg-blob bb1"></div>
-    <div class="bg-blob bb2"></div>
-    <div class="bg-blob bb3"></div>
+<div class="bg-blob bb1"></div>
+<div class="bg-blob bb2"></div>
+<div class="bg-blob bb3"></div>
 </div>
-
 <div class="prog-wrap"><div class="prog-fill" id="pf"></div></div>
 <div class="counter">Slide <span id="sn">1</span> / 20</div>
-
 <div class="swiper">
 <div class="swiper-wrapper">
-
-
 <!-- ==========================================
      SLIDE 1 — HERO
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
+<div class="sc" data-tilt="">
 <div class="g2">
-
-  <!-- LEFT -->
-  <div class="flex-c" style="gap:1.1rem;justify-content:center;height:100%">
-    <!-- Logos -->
-    <div class="au" style="display:flex;align-items:center;gap:16px;margin-bottom:.3rem">
-      <img src="images/logo_1.jpeg" alt="Menoufia University" style="height:64px;width:auto;background:white;padding:5px;border-radius:10px;box-shadow:var(--shadow-card)">
-      <div style="height:44px;width:1.5px;background:var(--g200)"></div>
-      <img src="images/logo_2.jpeg" alt="Faculty" style="height:64px;width:auto;background:white;padding:5px;border-radius:10px;box-shadow:var(--shadow-card)">
+<!-- LEFT -->
+<div class="flex-c" style="gap:1.1rem;justify-content:center;height:100%">
+<!-- Logos -->
+<div class="au" style="display:flex;align-items:center;gap:16px;margin-bottom:.3rem">
+<img alt="Menoufia University" class="anim" src="images/logo_1.jpeg" style="height:64px;width:auto;background:var(--glass);backdrop-filter:blur(10px);padding:5px;border-radius:10px;box-shadow:var(--shadow-card)"/>
+<div style="height:44px;width:1.5px;background:var(--g200)"></div>
+<img alt="Faculty" class="anim" src="images/logo_2.jpeg" style="height:64px;width:auto;background:var(--glass);backdrop-filter:blur(10px);padding:5px;border-radius:10px;box-shadow:var(--shadow-card)"/>
+</div>
+<!-- Badge -->
+<div class="au" style="display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:var(--black);color:white;border-radius:100px;font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;align-self:flex-start">
+<div class="dot-pulse"></div> Graduation Project 2026
     </div>
-
-    <!-- Badge -->
-    <div class="au" style="display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:var(--black);color:white;border-radius:100px;font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;align-self:flex-start">
-      <div class="dot-pulse"></div> Graduation Project 2026
-    </div>
-
-    <!-- Title -->
-    <div class="au">
-      <h1 style="font-family:var(--fh);font-size:clamp(2.6rem,4vw,4.4rem);font-weight:900;line-height:1.05;color:var(--g900)">
-        Smart<br>
-        <span style="color:var(--orange)">Rehabilitation</span><br>
+<!-- Title -->
+<div class="au">
+<h1 class="anim" style="font-family:var(--fh);font-size:clamp(2.6rem,4vw,4.4rem);font-weight:900;line-height:1.05;color:var(--g900)">
+        Smart<br/>
+<span style="color:var(--orange)">Rehabilitation</span><br/>
         Glove
       </h1>
-    </div>
-
-    <!-- Desc -->
-    <p class="au" style="font-size:1.05rem;max-width:440px;line-height:1.75">
+</div>
+<!-- Desc -->
+<p class="au anim" style="font-size:1.05rem;max-width:440px;line-height:1.75">
       A wearable mechatronic device combining <strong>TENS therapy</strong>, <strong>vibration feedback</strong>, and <strong>real-time force sensing</strong> to restore hand function for patients with neurological impairments.
     </p>
-
-    <!-- Uni info -->
-    <div class="au border-l" style="margin-top:.3rem">
-      <div style="font-family:var(--fh);font-weight:700;font-size:.9rem;color:var(--g700)">Menoufia University</div>
-      <div style="font-size:.8rem;color:var(--g500)">Faculty of Applied Health Sciences Technology</div>
-      <div style="font-size:.78rem;color:var(--g500)">Technology of Biomedical Equipment — برنامج تكنولوجيا الأجهزة الطبية الحيوية</div>
-    </div>
-
-    <!-- Supervisor -->
-    <div class="au" style="display:flex;align-items:center;gap:12px;padding:11px 16px;background:white;border-radius:var(--rs);border:1px solid var(--g200);box-shadow:var(--shadow-card);align-self:flex-start">
-      <div class="ci ci-sm"><i class="ph-fill ph-chalkboard-teacher"></i></div>
-      <div>
-        <div style="font-size:.7rem;color:var(--g500);text-transform:uppercase;letter-spacing:1px">Supervised By</div>
-        <div style="font-family:var(--fh);font-weight:700;font-size:.95rem">Dr. Essam Nabil</div>
-      </div>
-    </div>
-
-    <!-- Stats row -->
-    <div class="au" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:.3rem">
-      <div class="card card-p" style="text-align:center">
-        <div style="font-family:var(--fh);font-size:1.7rem;font-weight:900;color:var(--orange)">3</div>
-        <div style="font-size:.72rem;color:var(--g500)">Therapy Modules</div>
-      </div>
-      <div class="card card-p" style="text-align:center">
-        <div style="font-family:var(--fh);font-size:1.7rem;font-weight:900;color:var(--orange)">15</div>
-        <div style="font-size:.72rem;color:var(--g500)">Team Members</div>
-      </div>
-      <div class="card card-p" style="text-align:center">
-        <div style="font-family:var(--fh);font-size:1.7rem;font-weight:900;color:var(--orange)">13</div>
-        <div style="font-size:.72rem;color:var(--g500)">Components</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RIGHT — glove image -->
-  <div class="ar" style="display:flex;flex-direction:column;gap:1.2rem;height:100%;justify-content:center">
-    <div class="img-box" style="flex:1">
-      <img src="images/image3.jpeg" alt="Smart Rehabilitation Glove" style="height:100%;max-height:520px;width:100%;object-fit:cover">
-    </div>
-    <div class="card card-p" style="display:flex;align-items:center;gap:12px">
-      <div class="ci ci-sm"><i class="ph-fill ph-hand-waving"></i></div>
-      <div>
-        <div class="ttl-sm">Smart Rehabilitation Glove</div>
-        <div class="txt-sm">Black &amp; Orange Pneumatic Wearable Device</div>
-      </div>
-    </div>
-  </div>
-
+<!-- Uni info -->
+<div class="au border-l" style="margin-top:.3rem">
+<div style="font-family:var(--fh);font-weight:700;font-size:.9rem;color:var(--g700)">Menoufia University</div>
+<div style="font-size:.8rem;color:var(--g500)">Faculty of Applied Health Sciences Technology</div>
+<div style="font-size:.78rem;color:var(--g500)">Technology of Biomedical Equipment — برنامج تكنولوجيا الأجهزة الطبية الحيوية</div>
+</div>
+<!-- Supervisor -->
+<div class="au" style="display:flex;align-items:center;gap:12px;padding:11px 16px;background:var(--glass);backdrop-filter:blur(10px);border-radius:var(--rs);border:1px solid var(--g200);box-shadow:var(--shadow-card);align-self:flex-start">
+<div class="ci ci-sm"><i class="ph-fill ph-chalkboard-teacher"></i></div>
+<div>
+<div style="font-size:.7rem;color:var(--g500);text-transform:uppercase;letter-spacing:1px">Supervised By</div>
+<div style="font-family:var(--fh);font-weight:700;font-size:.95rem">Dr. Essam Nabil</div>
+</div>
+</div>
+<!-- Stats row -->
+<div class="au" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:.3rem">
+<div class="card card-p" data-tilt="" style="text-align:center">
+<div style="font-family:var(--fh);font-size:1.7rem;font-weight:900;color:var(--orange)">3</div>
+<div style="font-size:.72rem;color:var(--g500)">Therapy Modules</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center">
+<div style="font-family:var(--fh);font-size:1.7rem;font-weight:900;color:var(--orange)">15</div>
+<div style="font-size:.72rem;color:var(--g500)">Team Members</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center">
+<div style="font-family:var(--fh);font-size:1.7rem;font-weight:900;color:var(--orange)">13</div>
+<div style="font-size:.72rem;color:var(--g500)">Components</div>
+</div>
+</div>
+</div>
+<!-- RIGHT — glove image -->
+<div class="ar" style="display:flex;flex-direction:column;gap:1.2rem;height:100%;justify-content:center">
+<div class="img-box" style="flex:1">
+<img alt="Smart Rehabilitation Glove" class="anim" src="images/image3.jpeg" style="height:100%;max-height:520px;width:100%;object-fit:cover"/>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:center;gap:12px">
+<div class="ci ci-sm"><i class="ph-fill ph-hand-waving"></i></div>
+<div>
+<div class="ttl-sm">Smart Rehabilitation Glove</div>
+<div class="txt-sm">Black &amp; Orange Pneumatic Wearable Device</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="scroll-h"><i class="ph-bold ph-arrow-down"></i> Scroll to explore</div>
 </div>
-
-
-
 <!-- ==========================================
      SLIDE 2 — ABSTRACT
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
+<div class="sc" data-tilt="">
 <div class="g2">
-
-  <div class="al col">
-    <div><span class="tag"><i class="ph-fill ph-file-text"></i> Abstract</span></div>
-    <h2 class="ttl">A 4-in-1 <span class="acc">Therapeutic</span> System</h2>
-    <p class="sub" style="margin-bottom: 1rem;">The system is fundamentally four devices integrated into one comprehensive platform, delivering a complete hand rehabilitation and assessment solution.</p>
-
-    <!-- 4 modules -->
-    <div class="col" style="gap:.6rem">
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px; padding: 1rem;">
-        <div class="ci ci-sm"><i class="ph-fill ph-hand-waving"></i></div>
-        <div><div class="ttl-sm">1. Hand Rehabilitation Mode</div><div class="txt-sm">Pneumatic glove & pump system for mobility. Features 3 rate-based programs: 5, 10, or 15 open/close cycles per minute.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px; padding: 1rem;">
-        <div class="ci ci-sm"><i class="ph-fill ph-lightning"></i></div>
-        <div><div class="ttl-sm">2. TENS Mode</div><div class="txt-sm">Electrical stimulation for muscles and nerves. Offers 3 classic programs: Continuous, Burst, and Modulated.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px; padding: 1rem;">
-        <div class="ci ci-sm"><i class="ph-fill ph-waves"></i></div>
-        <div><div class="ttl-sm">3. Vibration Mode</div><div class="txt-sm">Integrated vibration motor providing targeted muscle massage therapy to stimulate blood flow and reduce stiffness.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px; padding: 1rem;">
-        <div class="ci ci-sm"><i class="ph-fill ph-hand-grabbing"></i></div>
-        <div><div class="ttl-sm">4. Force Measurement Module</div><div class="txt-sm">Utilizes a force sensor to measure grip pressure, testing and displaying the patient's grip strength capacity as a percentage.</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ar col" style="height:100%;justify-content:center">
-    <!-- Glove open fingers image -->
-    <div class="img-box">
-      <img src="images/image9.png" alt="Pneumatic Glove" style="height:300px">
-    </div>
-    <div class="card card-p border-l">
-      <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:5px">Clinical Value</div>
-      <p style="font-size:.85rem;line-height:1.65">Empowers therapists to monitor patients' progress quantitatively and adjust treatment intensity based on objective data — ensuring a personalized and documented recovery path.</p>
-    </div>
-    <div class="img-box-sm">
-      <img src="images/image8.png" alt="Glove with Force Ball" style="height:160px;object-fit:contain;background:var(--g50);padding:8px">
-    </div>
-  </div>
-
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-file-text"></i> Abstract</span></div>
+<h2 class="ttl anim">A 4-in-1 <span class="acc">Therapeutic</span> System</h2>
+<p class="sub anim" style="margin-bottom: 1rem;">The system is fundamentally four devices integrated into one comprehensive platform, delivering a complete hand rehabilitation and assessment solution.</p>
+<!-- 4 modules -->
+<div class="col" style="gap:.6rem">
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px; padding: 1rem;">
+<div class="ci ci-sm"><i class="ph-fill ph-hand-waving"></i></div>
+<div><div class="ttl-sm">1. Hand Rehabilitation Mode</div><div class="txt-sm">Pneumatic glove &amp; pump system for mobility. Features 3 rate-based programs: 5, 10, or 15 open/close cycles per minute.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px; padding: 1rem;">
+<div class="ci ci-sm"><i class="ph-fill ph-lightning"></i></div>
+<div><div class="ttl-sm">2. TENS Mode</div><div class="txt-sm">Electrical stimulation for muscles and nerves. Offers 3 classic programs: Continuous, Burst, and Modulated.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px; padding: 1rem;">
+<div class="ci ci-sm"><i class="ph-fill ph-waves"></i></div>
+<div><div class="ttl-sm">3. Vibration Mode</div><div class="txt-sm">Integrated vibration motor providing targeted muscle massage therapy to stimulate blood flow and reduce stiffness.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px; padding: 1rem;">
+<div class="ci ci-sm"><i class="ph-fill ph-hand-grabbing"></i></div>
+<div><div class="ttl-sm">4. Force Measurement Module</div><div class="txt-sm">Utilizes a force sensor to measure grip pressure, testing and displaying the patient's grip strength capacity as a percentage.</div></div>
 </div>
 </div>
 </div>
-
-
-
+<div class="ar col" style="height:100%;justify-content:center">
+<!-- Glove open fingers image -->
+<div class="img-box">
+<img alt="Pneumatic Glove" class="anim" src="images/image9.png" style="height:300px"/>
+</div>
+<div class="card card-p border-l" data-tilt="">
+<div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:5px">Clinical Value</div>
+<p class="anim" style="font-size:.85rem;line-height:1.65">Empowers therapists to monitor patients' progress quantitatively and adjust treatment intensity based on objective data — ensuring a personalized and documented recovery path.</p>
+</div>
+<div class="img-box-sm">
+<img alt="Glove with Force Ball" class="anim" src="images/image8.png" style="height:160px;object-fit:contain;background:var(--g50);padding:8px"/>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 3 — PROBLEM STATEMENT
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="au center" style="margin-bottom:.8rem;align-items:center">
-    <span class="tag"><i class="ph-fill ph-warning-circle"></i> Problem Statement</span>
-    <h2 class="ttl" style="text-align:center">Core Challenges of <span class="acc">Hand Rehabilitation</span></h2>
-    <p class="sub" style="max-width:640px;text-align:center;margin-bottom:0">Overcoming functional and physical deficits that arise from injuries, diseases, or neurological conditions affecting the hand.</p>
-  </div>
-
-  <div class="g3 au">
-    <div class="card card-p" style="position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200);transition:background .3s"></div>
-      <div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-arrows-out-line-horizontal"></i></div>
-      <div class="ttl-sm">Limited Range of Motion</div>
-      <p class="txt-sm">Fractures and arthritis restrict joint mobility, impairing the ability to grasp, pinch, or perform essential movements.</p>
-    </div>
-    <div class="card card-p" style="position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200)"></div>
-      <div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-barbell"></i></div>
-      <div class="ttl-sm">Muscle Atrophy & Weakness</div>
-      <p class="txt-sm">Prolonged immobilization leads to muscle wasting, significantly reducing grip strength and endurance.</p>
-    </div>
-    <div class="card card-p" style="position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200)"></div>
-      <div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-hand"></i></div>
-      <div class="ttl-sm">Sensory Deficits</div>
-      <p class="txt-sm">Nerve damage alters tactile feedback (touch, temperature, pressure), making safe object manipulation difficult.</p>
-    </div>
-    <div class="card card-p" style="position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200)"></div>
-      <div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-crosshair"></i></div>
-      <div class="ttl-sm">Impaired Coordination</div>
-      <p class="txt-sm">Disrupted motor skills make fine, precise tasks such as writing, typing, or handling small objects extremely challenging.</p>
-    </div>
-    <div class="card card-p" style="position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200)"></div>
-      <div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-heartbeat"></i></div>
-      <div class="ttl-sm">Chronic Pain</div>
-      <p class="txt-sm">Persistent pain acts as a major barrier, preventing patients from utilizing their hand effectively in daily life.</p>
-    </div>
-    <div class="card card-p card-hl" style="position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange)"></div>
-      <div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-fill ph-lightbulb"></i></div>
-      <div class="ttl-sm">Our Smart Solution</div>
-      <p class="txt-sm">An integrated wearable glove combining pneumatic actuation, TENS, vibration therapy, and real-time force measurement.</p>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="au center" style="margin-bottom:.8rem;align-items:center">
+<span class="tag"><i class="ph-fill ph-warning-circle"></i> Problem Statement</span>
+<h2 class="ttl anim" style="text-align:center">Core Challenges of <span class="acc">Hand Rehabilitation</span></h2>
+<p class="sub anim" style="max-width:640px;text-align:center;margin-bottom:0">Overcoming functional and physical deficits that arise from injuries, diseases, or neurological conditions affecting the hand.</p>
+</div>
+<div class="g3 au">
+<div class="card card-p" data-tilt="" style="position:relative;overflow:hidden">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200);transition:background .3s"></div>
+<div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-arrows-out-line-horizontal"></i></div>
+<div class="ttl-sm">Limited Range of Motion</div>
+<p class="txt-sm anim">Fractures and arthritis restrict joint mobility, impairing the ability to grasp, pinch, or perform essential movements.</p>
+</div>
+<div class="card card-p" data-tilt="" style="position:relative;overflow:hidden">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200)"></div>
+<div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-barbell"></i></div>
+<div class="ttl-sm">Muscle Atrophy &amp; Weakness</div>
+<p class="txt-sm anim">Prolonged immobilization leads to muscle wasting, significantly reducing grip strength and endurance.</p>
+</div>
+<div class="card card-p" data-tilt="" style="position:relative;overflow:hidden">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200)"></div>
+<div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-hand"></i></div>
+<div class="ttl-sm">Sensory Deficits</div>
+<p class="txt-sm anim">Nerve damage alters tactile feedback (touch, temperature, pressure), making safe object manipulation difficult.</p>
+</div>
+<div class="card card-p" data-tilt="" style="position:relative;overflow:hidden">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200)"></div>
+<div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-crosshair"></i></div>
+<div class="ttl-sm">Impaired Coordination</div>
+<p class="txt-sm anim">Disrupted motor skills make fine, precise tasks such as writing, typing, or handling small objects extremely challenging.</p>
+</div>
+<div class="card card-p" data-tilt="" style="position:relative;overflow:hidden">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--g200)"></div>
+<div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-bold ph-heartbeat"></i></div>
+<div class="ttl-sm">Chronic Pain</div>
+<p class="txt-sm anim">Persistent pain acts as a major barrier, preventing patients from utilizing their hand effectively in daily life.</p>
+</div>
+<div class="card card-p card-hl" data-tilt="" style="position:relative;overflow:hidden">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange)"></div>
+<div class="ci ci-sm" style="margin-bottom:.8rem"><i class="ph-fill ph-lightbulb"></i></div>
+<div class="ttl-sm">Our Smart Solution</div>
+<p class="txt-sm anim">An integrated wearable glove combining pneumatic actuation, TENS, vibration therapy, and real-time force measurement.</p>
 </div>
 </div>
-
-
-
+</div>
+</div>
 <!-- ==========================================
      SLIDE 4 — HISTORICAL BACKGROUND
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="au" style="text-align:center;margin-bottom:1.5rem">
-    <span class="tag"><i class="ph-fill ph-clock-counter-clockwise"></i> Historical Background</span>
-    <h2 class="ttl" style="text-align:center">Evolution of <span class="acc">Hand Rehabilitation</span></h2>
-    <p class="sub" style="text-align:center;max-width:600px;margin:0 auto">From ancient splinting to modern smart wearables — a journey spanning centuries of medical innovation.</p>
-  </div>
-
-  <div class="tl au" style="transition-delay:.15s">
-    <div class="tl-item">
-      <div class="tl-dot active"></div>
-      <div class="card tl-card">
-        <div style="font-size:.65rem;color:var(--orange);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Ancient Era</div>
-        <div class="ttl-sm">Ancient Beginnings</div>
-        <p class="txt-sm">Early societies used primitive therapeutic methods like splinting and joint movement exercises in ancient Egypt to manage hand injuries.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="card tl-card">
-        <div style="font-size:.65rem;color:var(--g400);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">18th–19th Century</div>
-        <div class="ttl-sm">Surgical Pioneers</div>
-        <p class="txt-sm">Guillaume Dupuytren pioneered operative procedures for correcting hand deformities, establishing principles of modern rehabilitation.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="card tl-card">
-        <div style="font-size:.65rem;color:var(--g400);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">World Wars</div>
-        <div class="ttl-sm">Wartime Innovation</div>
-        <p class="txt-sm">Severe trauma catalyzed rapid advances: tendon rerouting, custom splint fabrication, and functional electrical stimulation (FES).</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="card tl-card">
-        <div style="font-size:.65rem;color:var(--g400);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">1950s–1977</div>
-        <div class="ttl-sm">Formal Specialty</div>
-        <p class="txt-sm">Hand rehabilitation emerged as a formal specialty. The American Society of Hand Therapists (ASHT) was founded in 1977.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot active"></div>
-      <div class="card tl-card card-hl">
-        <div style="font-size:.65rem;color:var(--orange);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Today 2026</div>
-        <div class="ttl-sm">Smart Wearables</div>
-        <p class="txt-sm">Smart Rehabilitation Gloves — integrating pneumatic actuation, force sensing, TENS, and real-time digital feedback.</p>
-      </div>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="au" style="text-align:center;margin-bottom:1.5rem">
+<span class="tag"><i class="ph-fill ph-clock-counter-clockwise"></i> Historical Background</span>
+<h2 class="ttl anim" style="text-align:center">Evolution of <span class="acc">Hand Rehabilitation</span></h2>
+<p class="sub anim" style="text-align:center;max-width:600px;margin:0 auto">From ancient splinting to modern smart wearables — a journey spanning centuries of medical innovation.</p>
+</div>
+<div class="tl au" style="transition-delay:.15s">
+<div class="tl-item">
+<div class="tl-dot active"></div>
+<div class="card tl-card" data-tilt="">
+<div style="font-size:.65rem;color:var(--orange);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Ancient Era</div>
+<div class="ttl-sm">Ancient Beginnings</div>
+<p class="txt-sm anim">Early societies used primitive therapeutic methods like splinting and joint movement exercises in ancient Egypt to manage hand injuries.</p>
 </div>
 </div>
-
-
-
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="card tl-card" data-tilt="">
+<div style="font-size:.65rem;color:var(--g400);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">18th–19th Century</div>
+<div class="ttl-sm">Surgical Pioneers</div>
+<p class="txt-sm anim">Guillaume Dupuytren pioneered operative procedures for correcting hand deformities, establishing principles of modern rehabilitation.</p>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="card tl-card" data-tilt="">
+<div style="font-size:.65rem;color:var(--g400);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">World Wars</div>
+<div class="ttl-sm">Wartime Innovation</div>
+<p class="txt-sm anim">Severe trauma catalyzed rapid advances: tendon rerouting, custom splint fabrication, and functional electrical stimulation (FES).</p>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="card tl-card" data-tilt="">
+<div style="font-size:.65rem;color:var(--g400);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">1950s–1977</div>
+<div class="ttl-sm">Formal Specialty</div>
+<p class="txt-sm anim">Hand rehabilitation emerged as a formal specialty. The American Society of Hand Therapists (ASHT) was founded in 1977.</p>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot active"></div>
+<div class="card tl-card card-hl" data-tilt="">
+<div style="font-size:.65rem;color:var(--orange);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Today 2026</div>
+<div class="ttl-sm">Smart Wearables</div>
+<p class="txt-sm anim">Smart Rehabilitation Gloves — integrating pneumatic actuation, force sensing, TENS, and real-time digital feedback.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 5 — OBJECTIVES (1/2)
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
+<div class="sc" data-tilt="">
 <div class="g2">
-
-  <div class="al col">
-    <div><span class="tag"><i class="ph-fill ph-target"></i> Objectives (1/2)</span></div>
-    <h2 class="ttl">What We Aim<br>to <span class="acc">Achieve</span></h2>
-    <p class="sub">Restoring hand functionality and empowering patients to regain maximum independence post-injury or disease.</p>
-    <div class="col" style="gap:.8rem">
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px">
-        <div class="nbadge">01</div>
-        <div><div class="ttl-sm">Restoring Range of Motion (ROM)</div><div class="txt-sm">Pneumatic-assisted exercises for smooth, unrestricted daily finger and joint mobility.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px">
-        <div class="nbadge">02</div>
-        <div><div class="ttl-sm">Increasing Strength &amp; Dexterity</div><div class="txt-sm">Strengthening hand muscles and refining finger dexterity for precision grasping and fine motor tasks.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px">
-        <div class="nbadge">03</div>
-        <div><div class="ttl-sm">Non-Invasive Pain Management</div><div class="txt-sm">TENS therapy — a safer alternative to pharmaceutical dependency with three selectable therapeutic modes.</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ar col" style="height:100%;justify-content:center;gap:1rem">
-    <div class="img-box">
-      <img src="images/image7.png" alt="Rehabilitation Glove" style="height:350px;object-fit:contain;background:var(--g50);padding:12px">
-    </div>
-  </div>
-
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-target"></i> Objectives (1/2)</span></div>
+<h2 class="ttl anim">What We Aim<br/>to <span class="acc">Achieve</span></h2>
+<p class="sub anim">Restoring hand functionality and empowering patients to regain maximum independence post-injury or disease.</p>
+<div class="col" style="gap:.8rem">
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px">
+<div class="nbadge">01</div>
+<div><div class="ttl-sm">Restoring Range of Motion (ROM)</div><div class="txt-sm">Pneumatic-assisted exercises for smooth, unrestricted daily finger and joint mobility.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px">
+<div class="nbadge">02</div>
+<div><div class="ttl-sm">Increasing Strength &amp; Dexterity</div><div class="txt-sm">Strengthening hand muscles and refining finger dexterity for precision grasping and fine motor tasks.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px">
+<div class="nbadge">03</div>
+<div><div class="ttl-sm">Non-Invasive Pain Management</div><div class="txt-sm">TENS therapy — a safer alternative to pharmaceutical dependency with three selectable therapeutic modes.</div></div>
 </div>
 </div>
 </div>
-
-
-
+<div class="ar col" style="height:100%;justify-content:center;gap:1rem">
+<div class="img-box">
+<img alt="Rehabilitation Glove" class="anim" src="images/image7.png" style="height:350px;object-fit:contain;background:var(--g50);padding:12px"/>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 6 — OBJECTIVES (2/2)
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
+<div class="sc" data-tilt="">
 <div class="g2">
-
-  <div class="al col">
-    <div><span class="tag"><i class="ph-fill ph-target"></i> Objectives (2/2)</span></div>
-    <h2 class="ttl">Beyond Basic<br><span class="acc">Recovery</span></h2>
-    <p class="sub">Focusing on daily living activities and neuromuscular coordination for comprehensive rehabilitation.</p>
-    <div class="col" style="gap:.8rem">
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px">
-        <div class="nbadge">04</div>
-        <div><div class="ttl-sm">Enhancing Activities of Daily Living</div><div class="txt-sm">Empowering independent performance of essential tasks: self-care, writing, typing, and instrument operation.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px">
-        <div class="nbadge">05</div>
-        <div><div class="ttl-sm">Improving Coordination &amp; Proprioception</div><div class="txt-sm">Enhancing neuromuscular coordination through combined vibration and electrical stimulation feedback.</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ar col" style="height:100%;justify-content:center;gap:1.5rem">
-    <div class="g2" style="gap:1rem; grid-template-columns: 1fr;">
-      <div class="card card-p border-l">
-        <div class="ttl-sm" style="margin-bottom:4px; color:var(--orange)">Customized Plans</div>
-        <p class="txt-sm">Individualized protocols tailored to each patient's anatomical requirements, ensuring targeted and effective therapy sessions.</p>
-      </div>
-      <div class="card card-p border-l">
-        <div class="ttl-sm" style="margin-bottom:4px; color:var(--orange)">Scar Management</div>
-        <p class="txt-sm">Targeted techniques integrated within the movement cycles to minimize post-surgical scar tissue formation and prevent joint contractures.</p>
-      </div>
-    </div>
-  </div>
-
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-target"></i> Objectives (2/2)</span></div>
+<h2 class="ttl anim">Beyond Basic<br/><span class="acc">Recovery</span></h2>
+<p class="sub anim">Focusing on daily living activities and neuromuscular coordination for comprehensive rehabilitation.</p>
+<div class="col" style="gap:.8rem">
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px">
+<div class="nbadge">04</div>
+<div><div class="ttl-sm">Enhancing Activities of Daily Living</div><div class="txt-sm">Empowering independent performance of essential tasks: self-care, writing, typing, and instrument operation.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px">
+<div class="nbadge">05</div>
+<div><div class="ttl-sm">Improving Coordination &amp; Proprioception</div><div class="txt-sm">Enhancing neuromuscular coordination through combined vibration and electrical stimulation feedback.</div></div>
 </div>
 </div>
 </div>
-
-
-
-
+<div class="ar col" style="height:100%;justify-content:center;gap:1.5rem">
+<div class="g2" style="gap:1rem; grid-template-columns: 1fr;">
+<div class="card card-p border-l" data-tilt="">
+<div class="ttl-sm" style="margin-bottom:4px; color:var(--orange)">Customized Plans</div>
+<p class="txt-sm anim">Individualized protocols tailored to each patient's anatomical requirements, ensuring targeted and effective therapy sessions.</p>
+</div>
+<div class="card card-p border-l" data-tilt="">
+<div class="ttl-sm" style="margin-bottom:4px; color:var(--orange)">Scar Management</div>
+<p class="txt-sm anim">Targeted techniques integrated within the movement cycles to minimize post-surgical scar tissue formation and prevent joint contractures.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 7 — SYSTEM ARCHITECTURE
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
+<div class="sc" data-tilt="">
 <div class="g2">
-
-  <div class="al col">
-    <div><span class="tag"><i class="ph-fill ph-graph"></i> System Architecture</span></div>
-    <h2 class="ttl">4-Layer <span class="acc">Design</span><br>Philosophy</h2>
-    <p class="sub">The system was decomposed into four primary architecture layers for modularity, reliability, and ease of testing.</p>
-    <div class="col" style="gap:.75rem">
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px;position:relative">
-        <span class="lbadge lb-s">Sensing</span>
-        <div><div class="ttl-sm">Input &amp; Sensing Layer</div><div class="txt-sm">Flex sensors (finger ROM) + FSR sensors (grip force). 12-bit ADC readings on dedicated GPIO pins.</div></div>
-        <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);color:var(--orange);font-weight:900;font-size:.9rem;z-index:2">↓</div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px;position:relative">
-        <span class="lbadge lb-p">Processing</span>
-        <div><div class="ttl-sm">Processing &amp; Control Layer</div><div class="txt-sm">ESP32 dual-core (LX6): Core 1 for analog sampling &amp; safety, Core 0 for PWM &amp; wireless telemetry.</div></div>
-        <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);color:var(--orange);font-weight:900;font-size:.9rem;z-index:2">↓</div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px;position:relative">
-        <span class="lbadge lb-a">Actuation</span>
-        <div><div class="ttl-sm">Actuation &amp; Power Layer</div><div class="txt-sm">Solenoid valves + pneumatic glove + MOSFET switching. Buck converter (LM2596) for stable 5V/12V rails.</div></div>
-        <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);color:var(--orange);font-weight:900;font-size:.9rem;z-index:2">↓</div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px">
-        <span class="lbadge lb-f">Interface</span>
-        <div><div class="ttl-sm">Feedback &amp; Interface Layer</div><div class="txt-sm">LCD display showing grip %, valve status, vibration intensity, pressure readings, and diagnostics in real-time.</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ar col" style="height:100%;justify-content:center;gap:1rem">
-    <div class="img-box">
-      <img src="images/image6.jpeg" alt="ESP32 Controller" style="height:220px;object-fit:contain;background:var(--g50);padding:10px">
-    </div>
-    <div class="card card-p">
-      <div class="ttl-sm" style="margin-bottom:8px">Communication Protocols</div>
-      <div style="display:flex;gap:7px;flex-wrap:wrap">
-        <span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">GPIO</span>
-        <span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">PWM</span>
-        <span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">UART</span>
-        <span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">I²C</span>
-        <span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">ADC 12-bit</span>
-        <span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">Wi-Fi / BT</span>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-      <div class="card card-p" style="text-align:center"><div style="font-family:var(--fh);font-size:1.6rem;font-weight:900;color:var(--orange)">6</div><div style="font-size:.7rem;color:var(--g500)">Dev Phases</div></div>
-      <div class="card card-p" style="text-align:center"><div style="font-family:var(--fh);font-size:1.6rem;font-weight:900;color:var(--orange)">4</div><div style="font-size:.7rem;color:var(--g500)">Arch. Layers</div></div>
-      <div class="card card-p" style="text-align:center"><div style="font-family:var(--fh);font-size:1.6rem;font-weight:900;color:var(--orange)">13</div><div style="font-size:.7rem;color:var(--g500)">Components</div></div>
-    </div>
-  </div>
-
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-graph"></i> System Architecture</span></div>
+<h2 class="ttl anim">4-Layer <span class="acc">Design</span><br/>Philosophy</h2>
+<p class="sub anim">The system was decomposed into four primary architecture layers for modularity, reliability, and ease of testing.</p>
+<div class="col" style="gap:.75rem">
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px;position:relative">
+<span class="lbadge lb-s">Sensing</span>
+<div><div class="ttl-sm">Input &amp; Sensing Layer</div><div class="txt-sm">Flex sensors (finger ROM) + FSR sensors (grip force). 12-bit ADC readings on dedicated GPIO pins.</div></div>
+<div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);color:var(--orange);font-weight:900;font-size:.9rem;z-index:2">↓</div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px;position:relative">
+<span class="lbadge lb-p">Processing</span>
+<div><div class="ttl-sm">Processing &amp; Control Layer</div><div class="txt-sm">ESP32 dual-core (LX6): Core 1 for analog sampling &amp; safety, Core 0 for PWM &amp; wireless telemetry.</div></div>
+<div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);color:var(--orange);font-weight:900;font-size:.9rem;z-index:2">↓</div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px;position:relative">
+<span class="lbadge lb-a">Actuation</span>
+<div><div class="ttl-sm">Actuation &amp; Power Layer</div><div class="txt-sm">Solenoid valves + pneumatic glove + MOSFET switching. Buck converter (LM2596) for stable 5V/12V rails.</div></div>
+<div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);color:var(--orange);font-weight:900;font-size:.9rem;z-index:2">↓</div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px">
+<span class="lbadge lb-f">Interface</span>
+<div><div class="ttl-sm">Feedback &amp; Interface Layer</div><div class="txt-sm">LCD display showing grip %, valve status, vibration intensity, pressure readings, and diagnostics in real-time.</div></div>
 </div>
 </div>
 </div>
-
-
-
+<div class="ar col" style="height:100%;justify-content:center;gap:1rem">
+<div class="img-box">
+<img alt="ESP32 Controller" class="anim" src="images/image6.jpeg" style="height:220px;object-fit:contain;background:var(--g50);padding:10px"/>
+</div>
+<div class="card card-p" data-tilt="">
+<div class="ttl-sm" style="margin-bottom:8px">Communication Protocols</div>
+<div style="display:flex;gap:7px;flex-wrap:wrap">
+<span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">GPIO</span>
+<span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">PWM</span>
+<span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">UART</span>
+<span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">I²C</span>
+<span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">ADC 12-bit</span>
+<span style="padding:3px 9px;background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:.72rem;font-weight:700">Wi-Fi / BT</span>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+<div class="card card-p" data-tilt="" style="text-align:center"><div style="font-family:var(--fh);font-size:1.6rem;font-weight:900;color:var(--orange)">6</div><div style="font-size:.7rem;color:var(--g500)">Dev Phases</div></div>
+<div class="card card-p" data-tilt="" style="text-align:center"><div style="font-family:var(--fh);font-size:1.6rem;font-weight:900;color:var(--orange)">4</div><div style="font-size:.7rem;color:var(--g500)">Arch. Layers</div></div>
+<div class="card card-p" data-tilt="" style="text-align:center"><div style="font-family:var(--fh);font-size:1.6rem;font-weight:900;color:var(--orange)">13</div><div style="font-size:.7rem;color:var(--g500)">Components</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 7: CORE MODE 1 - HAND REHABILITATION
 ========================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="g2">
-    <div class="al col">
-      <div><span class="tag"><i class="ph-fill ph-hand-waving"></i> Core Mode 1</span></div>
-      <h2 class="ttl">Hand Rehabilitation <span class="acc">Mode</span></h2>
-      <p class="sub">A targeted pneumatic system designed for patients with neurological impairments, facilitating passive and active finger mobility.</p>
-      <div class="col" style="gap:1rem">
-        <div class="card card-p border-l">
-          <div class="ttl-sm">Pneumatic Glove & Pump Actuation</div>
-          <p class="txt-sm">The primary actuation mechanism uses a customized pneumatic pump to inflate and deflate air chambers within the glove, forcing the fingers into controlled flexion and extension.</p>
-        </div>
-        <div class="card card-p border-l">
-          <div class="ttl-sm">3 Selectable Rate Programs</div>
-          <p class="txt-sm">The software allows the therapist or patient to select between three specific rehabilitation rates depending on severity:<br>
-          <strong style="color:var(--orange); display:block; margin-top:5px;">&bull; 5 Cycles/Min:</strong> Slow rate for severe stiffness.<br>
-          <strong style="color:var(--orange)">&bull; 10 Cycles/Min:</strong> Moderate rate for standard therapy.<br>
-          <strong style="color:var(--orange)">&bull; 15 Cycles/Min:</strong> Fast rate for advanced recovery stages.</p>
-        </div>
-      </div>
-    </div>
-    <div class="ar center">
-      <div class="img-box" style="width:100%;max-width:500px">
-        <img src="images/image9.png" alt="Pneumatic Glove" style="height:350px;object-fit:cover">
-      </div>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="g2">
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-hand-waving"></i> Core Mode 1</span></div>
+<h2 class="ttl anim">Hand Rehabilitation <span class="acc">Mode</span></h2>
+<p class="sub anim">A targeted pneumatic system designed for patients with neurological impairments, facilitating passive and active finger mobility.</p>
+<div class="col" style="gap:1rem">
+<div class="card card-p border-l" data-tilt="">
+<div class="ttl-sm">Pneumatic Glove &amp; Pump Actuation</div>
+<p class="txt-sm anim">The primary actuation mechanism uses a customized pneumatic pump to inflate and deflate air chambers within the glove, forcing the fingers into controlled flexion and extension.</p>
+</div>
+<div class="card card-p border-l" data-tilt="">
+<div class="ttl-sm">3 Selectable Rate Programs</div>
+<p class="txt-sm anim">The software allows the therapist or patient to select between three specific rehabilitation rates depending on severity:<br/>
+<strong style="color:var(--orange); display:block; margin-top:5px;">• 5 Cycles/Min:</strong> Slow rate for severe stiffness.<br/>
+<strong style="color:var(--orange)">• 10 Cycles/Min:</strong> Moderate rate for standard therapy.<br/>
+<strong style="color:var(--orange)">• 15 Cycles/Min:</strong> Fast rate for advanced recovery stages.</p>
 </div>
 </div>
-
-
+</div>
+<div class="ar center">
+<div class="img-box" style="width:100%;max-width:500px">
+<img alt="Pneumatic Glove" class="anim" src="images/image9.png" style="height:350px;object-fit:cover"/>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 8: CORE MODE 2 - TENS THERAPY
 ========================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="g2">
-    <div class="al center">
-      <div class="img-box" style="width:100%;max-width:450px; padding: 1.5rem; background: var(--white);">
-        <img src="images/image12.png" alt="TENS Electrodes" style="object-fit: contain;">
-      </div>
-    </div>
-    <div class="ar col">
-      <div><span class="tag"><i class="ph-fill ph-lightning"></i> Core Mode 2</span></div>
-      <h2 class="ttl" style="font-size:2.2rem;">Transcutaneous Electrical Nerve Stimulation <span class="acc">(TENS)</span></h2>
-      <p class="sub" style="margin-bottom:0.5rem">Non-invasive electrotherapy for pain modulation, providing a safer alternative to pharmaceutical dependency.</p>
-      
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px; margin-bottom: 0.2rem;">
-        <div class="nbadge">01</div>
-        <div><div class="ttl-sm">Continuous Mode</div><div class="txt-sm">Delivers a steady, uninterrupted flow of electrical impulses. Highly effective for acute pain relief by blocking pain signals via the Gate Control Theory.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px; margin-bottom: 0.2rem;">
-        <div class="nbadge">02</div>
-        <div><div class="ttl-sm">Burst Mode</div><div class="txt-sm">Delivers bursts of pulses followed by a rest period. Triggers the release of endorphins, making it ideal for chronic, deep muscle pain.</div></div>
-      </div>
-      <div class="card card-p card-hl" style="display:flex;align-items:flex-start;gap:12px;">
-        <div class="nbadge" style="background:white; color:black;">03</div>
-        <div><div class="ttl-sm" style="color:white">Modulated Mode</div><div class="txt-sm" style="color:rgba(255,255,255,0.8)">Constantly varies intensity and pulse width. This prevents nerve accommodation (body adapting to stimulus), ensuring long-term therapeutic efficacy.</div></div>
-      </div>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="g2">
+<div class="al center">
+<div class="img-box" style="width:100%;max-width:450px; padding: 1.5rem; background: var(--white);">
+<img alt="TENS Electrodes" class="anim" src="images/image12.png" style="object-fit: contain;"/>
 </div>
 </div>
-
-
+<div class="ar col">
+<div><span class="tag"><i class="ph-fill ph-lightning"></i> Core Mode 2</span></div>
+<h2 class="ttl anim" style="font-size:2.2rem;">Transcutaneous Electrical Nerve Stimulation <span class="acc">(TENS)</span></h2>
+<p class="sub anim" style="margin-bottom:0.5rem">Non-invasive electrotherapy for pain modulation, providing a safer alternative to pharmaceutical dependency.</p>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px; margin-bottom: 0.2rem;">
+<div class="nbadge">01</div>
+<div><div class="ttl-sm">Continuous Mode</div><div class="txt-sm">Delivers a steady, uninterrupted flow of electrical impulses. Highly effective for acute pain relief by blocking pain signals via the Gate Control Theory.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px; margin-bottom: 0.2rem;">
+<div class="nbadge">02</div>
+<div><div class="ttl-sm">Burst Mode</div><div class="txt-sm">Delivers bursts of pulses followed by a rest period. Triggers the release of endorphins, making it ideal for chronic, deep muscle pain.</div></div>
+</div>
+<div class="card card-p card-hl" data-tilt="" style="display:flex;align-items:flex-start;gap:12px;">
+<div class="nbadge" style="background:var(--glass);backdrop-filter:blur(10px); color:black;">03</div>
+<div><div class="ttl-sm" style="color:white">Modulated Mode</div><div class="txt-sm" style="color:rgba(255,255,255,0.8)">Constantly varies intensity and pulse width. This prevents nerve accommodation (body adapting to stimulus), ensuring long-term therapeutic efficacy.</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 9: CORE MODE 3 - VIBRATION
 ========================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="g2">
-    <div class="al col">
-      <div><span class="tag"><i class="ph-fill ph-waves"></i> Core Mode 3</span></div>
-      <h2 class="ttl">Vibration & Massage <span class="acc">Therapy</span></h2>
-      <p class="sub">Targeted haptic feedback designed to stimulate blood circulation, reduce muscle spasticity, and enhance neuromuscular response.</p>
-      <div class="card card-p border-l" style="margin-bottom: 1rem;">
-        <div class="ttl-sm">ERM Haptic Actuators</div>
-        <p class="txt-sm">Eccentric Rotating Mass (ERM) motors are strategically placed at specific pressure points along the hand and wrist to deliver deep tissue vibrations.</p>
-      </div>
-      <div class="card card-p border-l">
-        <div class="ttl-sm">Dynamic PWM Control</div>
-        <p class="txt-sm">The microcontroller utilizes Pulse Width Modulation (PWM) to adjust the vibration intensity in real-time, allowing for a personalized massage experience tailored to the patient's pain tolerance.</p>
-      </div>
-    </div>
-    <div class="ar center">
-      <div class="img-box" style="width:100%;max-width:500px;background:white;padding:2rem;">
-        <img src="images/image13.png" alt="Vibration Motor" style="height:350px;object-fit:contain">
-      </div>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="g2">
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-waves"></i> Core Mode 3</span></div>
+<h2 class="ttl anim">Vibration &amp; Massage <span class="acc">Therapy</span></h2>
+<p class="sub anim">Targeted haptic feedback designed to stimulate blood circulation, reduce muscle spasticity, and enhance neuromuscular response.</p>
+<div class="card card-p border-l" data-tilt="" style="margin-bottom: 1rem;">
+<div class="ttl-sm">ERM Haptic Actuators</div>
+<p class="txt-sm anim">Eccentric Rotating Mass (ERM) motors are strategically placed at specific pressure points along the hand and wrist to deliver deep tissue vibrations.</p>
+</div>
+<div class="card card-p border-l" data-tilt="">
+<div class="ttl-sm">Dynamic PWM Control</div>
+<p class="txt-sm anim">The microcontroller utilizes Pulse Width Modulation (PWM) to adjust the vibration intensity in real-time, allowing for a personalized massage experience tailored to the patient's pain tolerance.</p>
 </div>
 </div>
-
-
+<div class="ar center">
+<div class="img-box" style="width:100%;max-width:500px;background:var(--glass);backdrop-filter:blur(10px);padding:2rem;">
+<img alt="Vibration Motor" class="anim" src="images/image13.png" style="height:350px;object-fit:contain"/>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 10: CORE MODE 4 - FORCE SENSING
 ========================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="g2">
-    <div class="al center">
-      <div class="img-box" style="width:100%;max-width:500px;background:white;padding:2rem;border-radius:20px;">
-        <img src="images/image14.png" alt="Force Sensor" style="height:300px;object-fit:contain">
-      </div>
-    </div>
-    <div class="ar col">
-      <div><span class="tag"><i class="ph-fill ph-hand-grabbing"></i> Core Mode 4</span></div>
-      <h2 class="ttl">Force & Grip <span class="acc">Measurement</span></h2>
-      <p class="sub">Objective, quantitative assessment of hand recovery progress without relying on subjective patient feedback.</p>
-      
-      <div class="col" style="gap:1rem">
-        <div class="card card-p" style="display:flex;align-items:flex-start;gap:12px">
-          <div class="ci ci-sm"><i class="ph-fill ph-chart-line-up"></i></div>
-          <div><div class="ttl-sm">FSR Sensor Integration</div><div class="txt-sm">Force Sensitive Resistors (FSR) are embedded in the glove to capture the exact mechanical pressure exerted by the patient's grip.</div></div>
-        </div>
-        <div class="card card-p card-hl" style="display:flex;align-items:flex-start;gap:12px">
-          <div class="ci ci-sm ci-blk"><i class="ph-fill ph-percent"></i></div>
-          <div><div class="ttl-sm" style="color:white">0 - 100% Capacity Scale</div><div class="txt-sm" style="color:rgba(255,255,255,0.8)">The analog sensor data is mapped to a highly readable percentage scale (0% to 100%). This allows the therapist to accurately test and track how much gripping force the patient has regained over time.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="g2">
+<div class="al center">
+<div class="img-box" style="width:100%;max-width:500px;background:var(--glass);backdrop-filter:blur(10px);padding:2rem;border-radius:20px;">
+<img alt="Force Sensor" class="anim" src="images/image14.png" style="height:300px;object-fit:contain"/>
 </div>
 </div>
-
-
+<div class="ar col">
+<div><span class="tag"><i class="ph-fill ph-hand-grabbing"></i> Core Mode 4</span></div>
+<h2 class="ttl anim">Force &amp; Grip <span class="acc">Measurement</span></h2>
+<p class="sub anim">Objective, quantitative assessment of hand recovery progress without relying on subjective patient feedback.</p>
+<div class="col" style="gap:1rem">
+<div class="card card-p" data-tilt="" style="display:flex;align-items:flex-start;gap:12px">
+<div class="ci ci-sm"><i class="ph-fill ph-chart-line-up"></i></div>
+<div><div class="ttl-sm">FSR Sensor Integration</div><div class="txt-sm">Force Sensitive Resistors (FSR) are embedded in the glove to capture the exact mechanical pressure exerted by the patient's grip.</div></div>
+</div>
+<div class="card card-p card-hl" data-tilt="" style="display:flex;align-items:flex-start;gap:12px">
+<div class="ci ci-sm ci-blk"><i class="ph-fill ph-percent"></i></div>
+<div><div class="ttl-sm" style="color:white">0 - 100% Capacity Scale</div><div class="txt-sm" style="color:rgba(255,255,255,0.8)">The analog sensor data is mapped to a highly readable percentage scale (0% to 100%). This allows the therapist to accurately test and track how much gripping force the patient has regained over time.</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 8 — COMPONENTS (Part 1: Core)
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="au" style="text-align:center;margin-bottom:1rem">
-    <span class="tag"><i class="ph-fill ph-cpu"></i> Materials &amp; Methods — Core Components</span>
-    <h2 class="ttl" style="text-align:center">Control, Power <span class="acc">&amp; Actuation</span></h2>
-    <p class="sub" style="text-align:center;max-width:580px;margin:0 auto">The electronic and mechanical backbone that drives the smart rehabilitation system.</p>
-  </div>
-  <div class="g3 au" style="transition-delay:.12s">
-    <!-- ESP32 -->
-    <div class="card col" style="overflow:hidden">
-      <div style="background:var(--g50);padding:8px;text-align:center">
-        <img src="images/image6.jpeg" alt="ESP32" class="comp-img">
-      </div>
-      <div class="card-p">
-        <span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Controller</span>
-        <div class="ttl-sm" style="margin-top:6px">ESP32 Microcontroller</div>
-        <p class="txt-sm">Dual-core LX6 processor. Handles sensor reading, control logic, PWM generation, and wireless communication simultaneously.</p>
-      </div>
-    </div>
-    <!-- Pneumatic Glove -->
-    <div class="card col" style="overflow:hidden">
-      <div style="background:var(--g50);padding:8px;text-align:center">
-        <img src="images/image9.png" alt="Pneumatic Glove" class="comp-img">
-      </div>
-      <div class="card-p">
-        <span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Actuation</span>
-        <div class="ttl-sm" style="margin-top:6px">Pneumatic Glove</div>
-        <p class="txt-sm">Wearable component with inflatable air actuators along each finger. Assists finger flexion and extension for stroke rehabilitation.</p>
-      </div>
-    </div>
-    <!-- LCD Display -->
-    <div class="card col" style="overflow:hidden">
-      <div style="background:var(--g50);padding:8px;text-align:center">
-        <img src="images/image4.jpeg" alt="LCD Display" class="comp-img">
-      </div>
-      <div class="card-p">
-        <span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Interface</span>
-        <div class="ttl-sm" style="margin-top:6px">LCD Display Screen</div>
-        <p class="txt-sm">Shows real-time system data: pressure levels, force %, valve status (open/closed), vibration intensity, and diagnostics.</p>
-      </div>
-    </div>
-    <!-- MOSFET -->
-    <div class="card col" style="overflow:hidden">
-      <div style="background:var(--g50);padding:8px;text-align:center">
-        <img src="images/image10.png" alt="MOSFET" class="comp-img">
-      </div>
-      <div class="card-p">
-        <span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Switching</span>
-        <div class="ttl-sm" style="margin-top:6px">MOSFET Module</div>
-        <p class="txt-sm">High-speed electronic switch. Allows low-voltage ESP32 signal to safely control high-current loads (valves, motors) via PWM.</p>
-      </div>
-    </div>
-    <!-- Power Supply Adaptor -->
-    <div class="card col" style="overflow:hidden">
-      <div style="background:var(--g50);padding:8px;text-align:center">
-        <img src="images/image5.jpeg" alt="Power Supply" class="comp-img">
-      </div>
-      <div class="card-p">
-        <span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Power</span>
-        <div class="ttl-sm" style="margin-top:6px">Power Supply Adaptor</div>
-        <p class="txt-sm">Converts 220V AC to DC (12V/5V). Protects circuit from voltage fluctuations and powers all electronic components safely.</p>
-      </div>
-    </div>
-    <!-- Buck Converter -->
-    <div class="card col" style="overflow:hidden">
-      <div style="background:var(--g50);padding:8px;text-align:center">
-        <img src="images/image11.jpeg" alt="Buck Converter" class="comp-img">
-      </div>
-      <div class="card-p">
-        <span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Regulation</span>
-        <div class="ttl-sm" style="margin-top:6px">Power Supply Module (LM2596)</div>
-        <p class="txt-sm">DC-DC step-down converter. Distributes stable voltages (3.3V, 5V, 12V) to match each component's specific power needs.</p>
-      </div>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="au" style="text-align:center;margin-bottom:1rem">
+<span class="tag"><i class="ph-fill ph-cpu"></i> Materials &amp; Methods — Core Components</span>
+<h2 class="ttl anim" style="text-align:center">Control, Power <span class="acc">&amp; Actuation</span></h2>
+<p class="sub anim" style="text-align:center;max-width:580px;margin:0 auto">The electronic and mechanical backbone that drives the smart rehabilitation system.</p>
+</div>
+<div class="g3 au" style="transition-delay:.12s">
+<!-- ESP32 -->
+<div class="card col" data-tilt="" style="overflow:hidden">
+<div style="background:var(--g50);padding:8px;text-align:center">
+<img alt="ESP32" class="comp-img anim" src="images/image6.jpeg"/>
+</div>
+<div class="card-p" data-tilt="">
+<span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Controller</span>
+<div class="ttl-sm" style="margin-top:6px">ESP32 Microcontroller</div>
+<p class="txt-sm anim">Dual-core LX6 processor. Handles sensor reading, control logic, PWM generation, and wireless communication simultaneously.</p>
 </div>
 </div>
-
-
-
+<!-- Pneumatic Glove -->
+<div class="card col" data-tilt="" style="overflow:hidden">
+<div style="background:var(--g50);padding:8px;text-align:center">
+<img alt="Pneumatic Glove" class="comp-img anim" src="images/image9.png"/>
+</div>
+<div class="card-p" data-tilt="">
+<span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Actuation</span>
+<div class="ttl-sm" style="margin-top:6px">Pneumatic Glove</div>
+<p class="txt-sm anim">Wearable component with inflatable air actuators along each finger. Assists finger flexion and extension for stroke rehabilitation.</p>
+</div>
+</div>
+<!-- LCD Display -->
+<div class="card col" data-tilt="" style="overflow:hidden">
+<div style="background:var(--g50);padding:8px;text-align:center">
+<img alt="LCD Display" class="comp-img anim" src="images/image4.jpeg"/>
+</div>
+<div class="card-p" data-tilt="">
+<span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Interface</span>
+<div class="ttl-sm" style="margin-top:6px">LCD Display Screen</div>
+<p class="txt-sm anim">Shows real-time system data: pressure levels, force %, valve status (open/closed), vibration intensity, and diagnostics.</p>
+</div>
+</div>
+<!-- MOSFET -->
+<div class="card col" data-tilt="" style="overflow:hidden">
+<div style="background:var(--g50);padding:8px;text-align:center">
+<img alt="MOSFET" class="comp-img anim" src="images/image10.png"/>
+</div>
+<div class="card-p" data-tilt="">
+<span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Switching</span>
+<div class="ttl-sm" style="margin-top:6px">MOSFET Module</div>
+<p class="txt-sm anim">High-speed electronic switch. Allows low-voltage ESP32 signal to safely control high-current loads (valves, motors) via PWM.</p>
+</div>
+</div>
+<!-- Power Supply Adaptor -->
+<div class="card col" data-tilt="" style="overflow:hidden">
+<div style="background:var(--g50);padding:8px;text-align:center">
+<img alt="Power Supply" class="comp-img anim" src="images/image5.jpeg"/>
+</div>
+<div class="card-p" data-tilt="">
+<span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Power</span>
+<div class="ttl-sm" style="margin-top:6px">Power Supply Adaptor</div>
+<p class="txt-sm anim">Converts 220V AC to DC (12V/5V). Protects circuit from voltage fluctuations and powers all electronic components safely.</p>
+</div>
+</div>
+<!-- Buck Converter -->
+<div class="card col" data-tilt="" style="overflow:hidden">
+<div style="background:var(--g50);padding:8px;text-align:center">
+<img alt="Buck Converter" class="comp-img anim" src="images/image11.jpeg"/>
+</div>
+<div class="card-p" data-tilt="">
+<span style="padding:2px 8px;background:var(--orange-light);color:var(--orange-dark);border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Regulation</span>
+<div class="ttl-sm" style="margin-top:6px">Power Supply Module (LM2596)</div>
+<p class="txt-sm anim">DC-DC step-down converter. Distributes stable voltages (3.3V, 5V, 12V) to match each component's specific power needs.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 12: PNEUMATIC HARDWARE
 ========================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="g2">
-    <div class="al col">
-      <div><span class="tag"><i class="ph-fill ph-wind"></i> Hardware Subsystem</span></div>
-      <h2 class="ttl">Pneumatic <span class="acc">Control System</span></h2>
-      <p class="sub">The core mechanical engine driving the passive hand rehabilitation cycles.</p>
-      <div class="col" style="gap:1rem">
-        <div class="card card-p border-l">
-          <div class="ttl-sm">Miniature Air Pump (Compressor)</div>
-          <p class="txt-sm">A highly efficient DC air pump generates the necessary positive and negative pressure to inflate and deflate the glove's air chambers seamlessly.</p>
-        </div>
-        <div class="card card-p border-l">
-          <div class="ttl-sm">Solenoid Directional Valves</div>
-          <p class="txt-sm">Electronically controlled 2-way and 3-way solenoid valves direct the airflow. They are rapidly switched by the microcontroller to alternate between the flexion (inflation) and extension (deflation) states.</p>
-        </div>
-      </div>
-    </div>
-    <div class="ar center">
-      <div class="g2" style="gap:1.5rem">
-         <div class="img-box" style="height: 250px;background:white;padding:1rem;"><img src="images/pump.svg" alt="Pump" style="height:100%;object-fit:contain;width:100%"></div>
-         <div class="img-box" style="height: 250px;background:white;padding:1rem;"><img src="images/image15.png" alt="Valves" style="height:100%;object-fit:contain;width:100%"></div>
-      </div>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="g2">
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-wind"></i> Hardware Subsystem</span></div>
+<h2 class="ttl anim">Pneumatic <span class="acc">Control System</span></h2>
+<p class="sub anim">The core mechanical engine driving the passive hand rehabilitation cycles.</p>
+<div class="col" style="gap:1rem">
+<div class="card card-p border-l" data-tilt="">
+<div class="ttl-sm">Miniature Air Pump (Compressor)</div>
+<p class="txt-sm anim">A highly efficient DC air pump generates the necessary positive and negative pressure to inflate and deflate the glove's air chambers seamlessly.</p>
+</div>
+<div class="card card-p border-l" data-tilt="">
+<div class="ttl-sm">Solenoid Directional Valves</div>
+<p class="txt-sm anim">Electronically controlled 2-way and 3-way solenoid valves direct the airflow. They are rapidly switched by the microcontroller to alternate between the flexion (inflation) and extension (deflation) states.</p>
 </div>
 </div>
-
-
+</div>
+<div class="ar center">
+<div class="g2" style="gap:1.5rem">
+<div class="img-box" style="height: 250px;background:var(--glass);backdrop-filter:blur(10px);padding:1rem;"><img alt="Pump" class="anim" src="images/pump.svg" style="height:100%;object-fit:contain;width:100%"/></div>
+<div class="img-box" style="height: 250px;background:var(--glass);backdrop-filter:blur(10px);padding:1rem;"><img alt="Valves" class="anim" src="images/image15.png" style="height:100%;object-fit:contain;width:100%"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 10 — DEVELOPMENT METHODOLOGY 1
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
+<div class="sc" data-tilt="">
 <div class="g2">
-
-  <div class="al col">
-    <div><span class="tag"><i class="ph-fill ph-gear"></i> Dev Methodology (1/2)</span></div>
-    <h2 class="ttl">6-Phase <span class="acc">Top-Down</span><br>Approach</h2>
-    <p class="sub">A systematic top-down design and bottom-up integration methodology — Part 1: Design to Unit Testing.</p>
-    <div class="col" style="gap:.8rem">
-      <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-        <div class="nbadge" style="background:var(--g900)">1</div>
-        <div><div class="ttl-sm">Analysis &amp; Requirements</div><div class="txt-sm">Defined functional &amp; non-functional requirements in consultation with physiotherapy references (ROM, force, exercise scenarios).</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-        <div class="nbadge" style="background:#1d4ed8">2</div>
-        <div><div class="ttl-sm">Theoretical Design</div><div class="txt-sm">System decomposed into 4 layers. Block diagrams and communication protocols (GPIO, PWM, UART) defined.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-        <div class="nbadge" style="background:#059669">3</div>
-        <div><div class="ttl-sm">Modular Assembly &amp; Unit Testing</div><div class="txt-sm">Power supply → control circuit → pneumatic actuation → display interface tested independently before integration.</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ar col" style="height:100%;justify-content:center;gap:1.2rem">
-    <div class="img-box">
-      <img src="images/image3.jpeg" alt="Glove System" style="height:350px;object-fit:cover">
-    </div>
-  </div>
-
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-gear"></i> Dev Methodology (1/2)</span></div>
+<h2 class="ttl anim">6-Phase <span class="acc">Top-Down</span><br/>Approach</h2>
+<p class="sub anim">A systematic top-down design and bottom-up integration methodology — Part 1: Design to Unit Testing.</p>
+<div class="col" style="gap:.8rem">
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div class="nbadge" style="background:var(--g900)">1</div>
+<div><div class="ttl-sm">Analysis &amp; Requirements</div><div class="txt-sm">Defined functional &amp; non-functional requirements in consultation with physiotherapy references (ROM, force, exercise scenarios).</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div class="nbadge" style="background:#1d4ed8">2</div>
+<div><div class="ttl-sm">Theoretical Design</div><div class="txt-sm">System decomposed into 4 layers. Block diagrams and communication protocols (GPIO, PWM, UART) defined.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div class="nbadge" style="background:#059669">3</div>
+<div><div class="ttl-sm">Modular Assembly &amp; Unit Testing</div><div class="txt-sm">Power supply → control circuit → pneumatic actuation → display interface tested independently before integration.</div></div>
 </div>
 </div>
 </div>
-
-
-
+<div class="ar col" style="height:100%;justify-content:center;gap:1.2rem">
+<div class="img-box">
+<img alt="Glove System" class="anim" src="images/image3.jpeg" style="height:350px;object-fit:cover"/>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 11 — DEVELOPMENT METHODOLOGY 2
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
+<div class="sc" data-tilt="">
 <div class="g2">
-
-  <div class="al col">
-    <div><span class="tag"><i class="ph-fill ph-gear"></i> Dev Methodology (2/2)</span></div>
-    <h2 class="ttl">Integration &amp;<br><span class="acc">Calibration</span></h2>
-    <p class="sub">A systematic top-down design and bottom-up integration methodology — Part 2: Integration to Final Tuning.</p>
-    <div class="col" style="gap:.8rem">
-      <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-        <div class="nbadge" style="background:#d97706">4</div>
-        <div><div class="ttl-sm">Full System Integration</div><div class="txt-sm">All modules assembled into final mechanical housing. Unified firmware managing all tasks concurrently via ESP32 timers and interrupts.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-        <div class="nbadge" style="background:#7c3aed">5</div>
-        <div><div class="ttl-sm">Functional Verification</div><div class="txt-sm">Full system tested under real-world clinical conditions: valve response time, force sensor accuracy, stability over multiple cycles.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-        <div class="nbadge" style="background:var(--orange)">6</div>
-        <div><div class="ttl-sm">Calibration &amp; Final Tuning</div><div class="txt-sm">Force sensor offset/gain adjusted. Valve timing fine-tuned for smooth, natural finger trajectories. Display optimized for clinical clarity.</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ar col" style="height:100%;justify-content:center;gap:1.2rem">
-    <div class="card card-p" style="background:var(--black);border-color:rgba(249,115,22,.3)">
-      <div style="color:rgba(255,255,255,.6);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Firmware &amp; Software</div>
-      <p style="color:rgba(255,255,255,.8);font-size:.9rem;line-height:1.7;margin-bottom:1rem">
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-gear"></i> Dev Methodology (2/2)</span></div>
+<h2 class="ttl anim">Integration &amp;<br/><span class="acc">Calibration</span></h2>
+<p class="sub anim">A systematic top-down design and bottom-up integration methodology — Part 2: Integration to Final Tuning.</p>
+<div class="col" style="gap:.8rem">
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div class="nbadge" style="background:#d97706">4</div>
+<div><div class="ttl-sm">Full System Integration</div><div class="txt-sm">All modules assembled into final mechanical housing. Unified firmware managing all tasks concurrently via ESP32 timers and interrupts.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div class="nbadge" style="background:#7c3aed">5</div>
+<div><div class="ttl-sm">Functional Verification</div><div class="txt-sm">Full system tested under real-world clinical conditions: valve response time, force sensor accuracy, stability over multiple cycles.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div class="nbadge" style="background:var(--orange)">6</div>
+<div><div class="ttl-sm">Calibration &amp; Final Tuning</div><div class="txt-sm">Force sensor offset/gain adjusted. Valve timing fine-tuned for smooth, natural finger trajectories. Display optimized for clinical clarity.</div></div>
+</div>
+</div>
+</div>
+<div class="ar col" style="height:100%;justify-content:center;gap:1.2rem">
+<div class="card card-p" data-tilt="" style="background:var(--black);border-color:rgba(249,115,22,.3)">
+<div style="color:rgba(255,255,255,.6);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Firmware &amp; Software</div>
+<p class="anim" style="color:rgba(255,255,255,.8);font-size:.9rem;line-height:1.7;margin-bottom:1rem">
         Developed using <strong style="color:var(--orange)">Arduino IDE with C++</strong>. The ESP32 utilizes FreeRTOS capabilities on its dual cores to manage sensor polling, display updating, and wireless communication concurrently without blocking.
       </p>
-      <div style="color:rgba(255,255,255,.6);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Hardware &amp; Mechanical</div>
-      <p style="color:rgba(255,255,255,.8);font-size:.9rem;line-height:1.7">
+<div style="color:rgba(255,255,255,.6);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Hardware &amp; Mechanical</div>
+<p class="anim" style="color:rgba(255,255,255,.8);font-size:.9rem;line-height:1.7">
         Mechanical design and housing fabrication supported by <strong style="color:var(--orange)">CAD software</strong> (SolidWorks) for structural layout planning, ensuring a compact, ergonomic, and patient-friendly wearable format.
       </p>
-    </div>
-  </div>
-
 </div>
 </div>
 </div>
-
-
-
-
+</div>
+</div>
 <!-- ==========================================
      SLIDE 15: SAFETY MECHANISMS
 ========================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="center col" style="max-width:800px;margin:0 auto;text-align:center">
-    <div><span class="tag"><i class="ph-fill ph-shield-check"></i> Patient Safety</span></div>
-    <h2 class="ttl">Multi-Layered <span class="acc">Safety Protocols</span></h2>
-    <p class="sub" style="margin-bottom: 2rem;">Ensuring the patient is never exposed to excessive pressure, shock, or mechanical strain during automated therapy sessions.</p>
-  </div>
-  
-  <div class="g3">
-    <div class="card card-p center" style="text-align:center;gap:10px">
-      <div class="ci ci-rnd" style="width:60px;height:60px;font-size:2rem;margin:0 auto"><i class="ph-fill ph-gauge"></i></div>
-      <div class="ttl-sm">Auto Pressure Shutoff</div>
-      <div class="txt-sm">The software continuously monitors the pneumatic pressure. If it exceeds the safe therapeutic threshold, the pump is instantly deactivated and exhaust valves open.</div>
-    </div>
-    <div class="card card-p center" style="text-align:center;gap:10px">
-      <div class="ci ci-rnd" style="width:60px;height:60px;font-size:2rem;margin:0 auto"><i class="ph-fill ph-plugs"></i></div>
-      <div class="ttl-sm">Electrical Isolation</div>
-      <div class="txt-sm">The TENS module and main power supplies are optically isolated using relays and optocouplers to prevent any leakage current from reaching the patient.</div>
-    </div>
-    <div class="card card-p center" style="text-align:center;gap:10px">
-      <div class="ci ci-rnd" style="width:60px;height:60px;font-size:2rem;margin:0 auto"><i class="ph-fill ph-hand-stop"></i></div>
-      <div class="ttl-sm">Hardware Emergency Stop</div>
-      <div class="txt-sm">A physical override switch allows the patient or therapist to instantly cut power to all actuators and deflate the glove in case of discomfort.</div>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="center col" style="max-width:800px;margin:0 auto;text-align:center">
+<div><span class="tag"><i class="ph-fill ph-shield-check"></i> Patient Safety</span></div>
+<h2 class="ttl anim">Multi-Layered <span class="acc">Safety Protocols</span></h2>
+<p class="sub anim" style="margin-bottom: 2rem;">Ensuring the patient is never exposed to excessive pressure, shock, or mechanical strain during automated therapy sessions.</p>
+</div>
+<div class="g3">
+<div class="card card-p center" data-tilt="" style="text-align:center;gap:10px">
+<div class="ci ci-rnd" style="width:60px;height:60px;font-size:2rem;margin:0 auto"><i class="ph-fill ph-gauge"></i></div>
+<div class="ttl-sm">Auto Pressure Shutoff</div>
+<div class="txt-sm">The software continuously monitors the pneumatic pressure. If it exceeds the safe therapeutic threshold, the pump is instantly deactivated and exhaust valves open.</div>
+</div>
+<div class="card card-p center" data-tilt="" style="text-align:center;gap:10px">
+<div class="ci ci-rnd" style="width:60px;height:60px;font-size:2rem;margin:0 auto"><i class="ph-fill ph-plugs"></i></div>
+<div class="ttl-sm">Electrical Isolation</div>
+<div class="txt-sm">The TENS module and main power supplies are optically isolated using relays and optocouplers to prevent any leakage current from reaching the patient.</div>
+</div>
+<div class="card card-p center" data-tilt="" style="text-align:center;gap:10px">
+<div class="ci ci-rnd" style="width:60px;height:60px;font-size:2rem;margin:0 auto"><i class="ph-fill ph-hand-stop"></i></div>
+<div class="ttl-sm">Hardware Emergency Stop</div>
+<div class="txt-sm">A physical override switch allows the patient or therapist to instantly cut power to all actuators and deflate the glove in case of discomfort.</div>
 </div>
 </div>
-
-
+</div>
+</div>
 <!-- ==========================================
      SLIDE 12 — TESTING & VALIDATION
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
+<div class="sc" data-tilt="">
 <div class="g2">
-
-  <div class="al col">
-    <div><span class="tag"><i class="ph-fill ph-checks"></i> Testing &amp; Validation</span></div>
-    <h2 class="ttl">Rigorous <span class="acc">3-Stage</span><br>Test Strategy</h2>
-    <p class="sub">All tests follow the V-model — each test case maps directly to a specific system requirement with pass/fail criteria.</p>
-
-    <div class="col" style="gap:.8rem">
-      <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-        <div class="nbadge" style="background:var(--g900)">ST1</div>
-        <div><div class="ttl-sm">Component-Level Testing (Unit)</div><div class="txt-sm">13 components tested individually: MOSFET switching, 7805 regulation, valve activation, FSR linearity, HX710B pressure response, pneumatic airtightness.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-        <div class="nbadge" style="background:#059669">ST2</div>
-        <div><div class="ttl-sm">Sub-System Integration Testing</div><div class="txt-sm">Group interactions verified: ESP32 + MOSFET + Valve, ESP32 + FSR + Display, Power + Regulator chain. All protocols validated via oscilloscope.</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-        <div class="nbadge" style="background:#7c3aed">ST3</div>
-        <div><div class="ttl-sm">System-Level Validation (End-to-End)</div><div class="txt-sm">Complete clinical scenario: FSR press → valve open → glove inflate → pressure monitor → auto shutoff → display update. Looped 10+ cycles.</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ar col" style="height:100%;justify-content:center;gap:1rem">
-    <div style="font-family:var(--fh);font-weight:800;font-size:.95rem;color:var(--g900)">Measured System Performance ✅</div>
-
-    <div class="card card-p">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
-        <span style="font-family:var(--fh);font-weight:700;font-size:.85rem">FSR → Valve Latency</span>
-        <span style="font-family:var(--fh);font-weight:800;color:var(--orange)">&lt; 150ms</span>
-      </div>
-      <div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:95%"></div></div>
-    </div>
-    <div class="card card-p">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
-        <span style="font-family:var(--fh);font-weight:700;font-size:.85rem">Pressure Control Accuracy</span>
-        <span style="font-family:var(--fh);font-weight:800;color:var(--orange)">± 1 kPa</span>
-      </div>
-      <div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:98%"></div></div>
-    </div>
-    <div class="card card-p">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
-        <span style="font-family:var(--fh);font-weight:700;font-size:.85rem">Display Refresh Rate</span>
-        <span style="font-family:var(--fh);font-weight:800;color:var(--orange)">~20 Hz</span>
-      </div>
-      <div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:80%"></div></div>
-    </div>
-    <div class="card card-p">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
-        <span style="font-family:var(--fh);font-weight:700;font-size:.85rem">Glove Pressure Hold (60s)</span>
-        <span style="font-family:var(--fh);font-weight:800;color:var(--orange)">≤ 5% Drop</span>
-      </div>
-      <div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:100%"></div></div>
-    </div>
-    <div class="card card-p">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
-        <span style="font-family:var(--fh);font-weight:700;font-size:.85rem">7805 Output at Full Load</span>
-        <span style="font-family:var(--fh);font-weight:800;color:var(--orange)">5.0V ± 2%</span>
-      </div>
-      <div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:100%"></div></div>
-    </div>
-
-    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:.3rem">
-      <span class="pass"><i class="ph-fill ph-check-circle"></i> Electrical Safety</span>
-      <span class="pass"><i class="ph-fill ph-check-circle"></i> Mechanical Integrity</span>
-      <span class="pass"><i class="ph-fill ph-check-circle"></i> Force Sensing</span>
-      <span class="pass"><i class="ph-fill ph-check-circle"></i> Actuation Speed</span>
-      <span class="pass"><i class="ph-fill ph-check-circle"></i> Power Stability</span>
-      <span class="pass"><i class="ph-fill ph-check-circle"></i> Pressure Safety</span>
-    </div>
-  </div>
-
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-checks"></i> Testing &amp; Validation</span></div>
+<h2 class="ttl anim">Rigorous <span class="acc">3-Stage</span><br/>Test Strategy</h2>
+<p class="sub anim">All tests follow the V-model — each test case maps directly to a specific system requirement with pass/fail criteria.</p>
+<div class="col" style="gap:.8rem">
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div class="nbadge" style="background:var(--g900)">ST1</div>
+<div><div class="ttl-sm">Component-Level Testing (Unit)</div><div class="txt-sm">13 components tested individually: MOSFET switching, 7805 regulation, valve activation, FSR linearity, HX710B pressure response, pneumatic airtightness.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div class="nbadge" style="background:#059669">ST2</div>
+<div><div class="ttl-sm">Sub-System Integration Testing</div><div class="txt-sm">Group interactions verified: ESP32 + MOSFET + Valve, ESP32 + FSR + Display, Power + Regulator chain. All protocols validated via oscilloscope.</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div class="nbadge" style="background:#7c3aed">ST3</div>
+<div><div class="ttl-sm">System-Level Validation (End-to-End)</div><div class="txt-sm">Complete clinical scenario: FSR press → valve open → glove inflate → pressure monitor → auto shutoff → display update. Looped 10+ cycles.</div></div>
 </div>
 </div>
 </div>
-
-
-
+<div class="ar col" style="height:100%;justify-content:center;gap:1rem">
+<div style="font-family:var(--fh);font-weight:800;font-size:.95rem;color:var(--g900)">Measured System Performance ✅</div>
+<div class="card card-p" data-tilt="">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+<span style="font-family:var(--fh);font-weight:700;font-size:.85rem">FSR → Valve Latency</span>
+<span style="font-family:var(--fh);font-weight:800;color:var(--orange)">&lt; 150ms</span>
+</div>
+<div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:95%"></div></div>
+</div>
+<div class="card card-p" data-tilt="">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+<span style="font-family:var(--fh);font-weight:700;font-size:.85rem">Pressure Control Accuracy</span>
+<span style="font-family:var(--fh);font-weight:800;color:var(--orange)">± 1 kPa</span>
+</div>
+<div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:98%"></div></div>
+</div>
+<div class="card card-p" data-tilt="">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+<span style="font-family:var(--fh);font-weight:700;font-size:.85rem">Display Refresh Rate</span>
+<span style="font-family:var(--fh);font-weight:800;color:var(--orange)">~20 Hz</span>
+</div>
+<div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:80%"></div></div>
+</div>
+<div class="card card-p" data-tilt="">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+<span style="font-family:var(--fh);font-weight:700;font-size:.85rem">Glove Pressure Hold (60s)</span>
+<span style="font-family:var(--fh);font-weight:800;color:var(--orange)">≤ 5% Drop</span>
+</div>
+<div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:100%"></div></div>
+</div>
+<div class="card card-p" data-tilt="">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+<span style="font-family:var(--fh);font-weight:700;font-size:.85rem">7805 Output at Full Load</span>
+<span style="font-family:var(--fh);font-weight:800;color:var(--orange)">5.0V ± 2%</span>
+</div>
+<div class="bar-wrap"><div class="bar-fill result-bar" style="width:0%;--tw:100%"></div></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:.3rem">
+<span class="pass"><i class="ph-fill ph-check-circle"></i> Electrical Safety</span>
+<span class="pass"><i class="ph-fill ph-check-circle"></i> Mechanical Integrity</span>
+<span class="pass"><i class="ph-fill ph-check-circle"></i> Force Sensing</span>
+<span class="pass"><i class="ph-fill ph-check-circle"></i> Actuation Speed</span>
+<span class="pass"><i class="ph-fill ph-check-circle"></i> Power Stability</span>
+<span class="pass"><i class="ph-fill ph-check-circle"></i> Pressure Safety</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==========================================
      SLIDE 13 — CONCLUSIONS
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
+<div class="sc" data-tilt="">
 <div class="g2">
-
-  <div class="al col">
-    <div><span class="tag"><i class="ph-fill ph-flag-checkered"></i> Conclusions</span></div>
-    <h2 class="ttl">Achievements &amp;<br><span class="acc">Future Work</span></h2>
-    <div class="card card-p" style="background:var(--black);border:1px solid rgba(249,115,22,.3);margin-bottom:.5rem">
-      <div style="font-size:2.5rem;color:var(--orange);line-height:.6;font-family:serif;margin-bottom:8px">"</div>
-      <p style="color:rgba(255,255,255,.82);font-size:.88rem;line-height:1.7">A functional prototype was successfully developed, integrating sensing, actuation, and feedback in a single wearable device — meeting all primary rehabilitation objectives.</p>
-    </div>
-    <div class="col" style="gap:.65rem">
-      <div class="card card-p" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">Pneumatic-assisted ROM restoration — smooth finger motion cycles verified</span></div>
-      <div class="card card-p" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">0–100% grip strength scale for quantitative progress tracking</span></div>
-      <div class="card card-p" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">TENS pain management — safer alternative to pharmacotherapy</span></div>
-      <div class="card card-p" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">Real-time display with auto pressure shutoff safety mechanism</span></div>
-      <div class="card card-p" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">All 9 requirement areas passed rigorous unit &amp; system-level tests</span></div>
-    </div>
-  </div>
-
-  <div class="ar col" style="height:100%;justify-content:center;gap:1rem">
-    <div style="font-family:var(--fh);font-weight:800;font-size:.95rem;color:var(--g900)">🚀 Future Enhancements</div>
-    <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-      <div style="font-size:1.3rem;flex-shrink:0;margin-top:2px">📱</div>
-      <div><div class="ttl-sm">Mobile App / PC Dashboard</div><p class="txt-sm">Interactive data visualization, session history, and remote therapy configuration for physicians.</p></div>
-    </div>
-    <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-      <div style="font-size:1.3rem;flex-shrink:0;margin-top:2px">📡</div>
-      <div><div class="ttl-sm">Wireless Remote Monitoring</div><p class="txt-sm">Wi-Fi / Bluetooth for remote session logging and real-time patient progress tracking from any location.</p></div>
-    </div>
-    <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-      <div style="font-size:1.3rem;flex-shrink:0;margin-top:2px">🏥</div>
-      <div><div class="ttl-sm">Clinical Trials</div><p class="txt-sm">Validate therapeutic efficacy across larger patient groups in certified medical rehabilitation facilities.</p></div>
-    </div>
-    <div class="card card-p" style="display:flex;gap:12px;align-items:flex-start">
-      <div style="font-size:1.3rem;flex-shrink:0;margin-top:2px">⚙️</div>
-      <div><div class="ttl-sm">Mechanical Optimization</div><p class="txt-sm">Lighter, more ergonomic design with improved comfort and aesthetics for extended rehabilitation sessions.</p></div>
-    </div>
-  </div>
-
+<div class="al col">
+<div><span class="tag"><i class="ph-fill ph-flag-checkered"></i> Conclusions</span></div>
+<h2 class="ttl anim">Achievements &amp;<br/><span class="acc">Future Work</span></h2>
+<div class="card card-p" data-tilt="" style="background:var(--black);border:1px solid rgba(249,115,22,.3);margin-bottom:.5rem">
+<div style="font-size:2.5rem;color:var(--orange);line-height:.6;font-family:serif;margin-bottom:8px">"</div>
+<p class="anim" style="color:rgba(255,255,255,.82);font-size:.88rem;line-height:1.7">A functional prototype was successfully developed, integrating sensing, actuation, and feedback in a single wearable device — meeting all primary rehabilitation objectives.</p>
+</div>
+<div class="col" style="gap:.65rem">
+<div class="card card-p" data-tilt="" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">Pneumatic-assisted ROM restoration — smooth finger motion cycles verified</span></div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">0–100% grip strength scale for quantitative progress tracking</span></div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">TENS pain management — safer alternative to pharmacotherapy</span></div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">Real-time display with auto pressure shutoff safety mechanism</span></div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-check-circle" style="color:var(--orange);font-size:1.2rem;flex-shrink:0"></i><span style="font-size:.88rem;font-weight:500;color:var(--g700)">All 9 requirement areas passed rigorous unit &amp; system-level tests</span></div>
+</div>
+</div>
+<div class="ar col" style="height:100%;justify-content:center;gap:1rem">
+<div style="font-family:var(--fh);font-weight:800;font-size:.95rem;color:var(--g900)">🚀 Future Enhancements</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div style="font-size:1.3rem;flex-shrink:0;margin-top:2px">📱</div>
+<div><div class="ttl-sm">Mobile App / PC Dashboard</div><p class="txt-sm anim">Interactive data visualization, session history, and remote therapy configuration for physicians.</p></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div style="font-size:1.3rem;flex-shrink:0;margin-top:2px">📡</div>
+<div><div class="ttl-sm">Wireless Remote Monitoring</div><p class="txt-sm anim">Wi-Fi / Bluetooth for remote session logging and real-time patient progress tracking from any location.</p></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div style="font-size:1.3rem;flex-shrink:0;margin-top:2px">🏥</div>
+<div><div class="ttl-sm">Clinical Trials</div><p class="txt-sm anim">Validate therapeutic efficacy across larger patient groups in certified medical rehabilitation facilities.</p></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;gap:12px;align-items:flex-start">
+<div style="font-size:1.3rem;flex-shrink:0;margin-top:2px">⚙️</div>
+<div><div class="ttl-sm">Mechanical Optimization</div><p class="txt-sm anim">Lighter, more ergonomic design with improved comfort and aesthetics for extended rehabilitation sessions.</p></div>
 </div>
 </div>
 </div>
-
-
-
+</div>
+</div>
 <!-- ==========================================
      SLIDE 19: FUTURE RECOMMENDATIONS
 ========================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="center col" style="max-width:800px;margin:0 auto;text-align:center">
-    <div><span class="tag"><i class="ph-fill ph-rocket-launch"></i> What's Next?</span></div>
-    <h2 class="ttl">Future <span class="acc">Recommendations</span></h2>
-    <p class="sub" style="margin-bottom: 2rem;">Opportunities for evolving the Smart Rehabilitation Glove into a next-generation medical device.</p>
-  </div>
-  
-  <div class="g2" style="align-items: stretch;">
-    <div class="card card-p border-l" style="display:flex;flex-direction:column;gap:10px;justify-content:center;">
-      <div class="ci ci-sm"><i class="ph-fill ph-brain"></i></div>
-      <div class="ttl-sm">AI-Driven Adaptive Therapy</div>
-      <div class="txt-sm">Integrating Machine Learning algorithms to analyze historical force and mobility data, allowing the system to automatically adjust the therapy rate and TENS intensity based on the patient's real-time recovery curve.</div>
-    </div>
-    <div class="card card-p border-l" style="display:flex;flex-direction:column;gap:10px;justify-content:center;">
-      <div class="ci ci-sm"><i class="ph-fill ph-game-controller"></i></div>
-      <div class="ttl-sm">VR & Gamification Integration</div>
-      <div class="txt-sm">Connecting the glove's force sensors and actuators to Virtual Reality (VR) environments to make rehabilitation exercises more engaging, interactive, and psychologically rewarding for the patient.</div>
-    </div>
-  </div>
+<div class="sc" data-tilt="">
+<div class="center col" style="max-width:800px;margin:0 auto;text-align:center">
+<div><span class="tag"><i class="ph-fill ph-rocket-launch"></i> What's Next?</span></div>
+<h2 class="ttl anim">Future <span class="acc">Recommendations</span></h2>
+<p class="sub anim" style="margin-bottom: 2rem;">Opportunities for evolving the Smart Rehabilitation Glove into a next-generation medical device.</p>
+</div>
+<div class="g2" style="align-items: stretch;">
+<div class="card card-p border-l" data-tilt="" style="display:flex;flex-direction:column;gap:10px;justify-content:center;">
+<div class="ci ci-sm"><i class="ph-fill ph-brain"></i></div>
+<div class="ttl-sm">AI-Driven Adaptive Therapy</div>
+<div class="txt-sm">Integrating Machine Learning algorithms to analyze historical force and mobility data, allowing the system to automatically adjust the therapy rate and TENS intensity based on the patient's real-time recovery curve.</div>
+</div>
+<div class="card card-p border-l" data-tilt="" style="display:flex;flex-direction:column;gap:10px;justify-content:center;">
+<div class="ci ci-sm"><i class="ph-fill ph-game-controller"></i></div>
+<div class="ttl-sm">VR &amp; Gamification Integration</div>
+<div class="txt-sm">Connecting the glove's force sensors and actuators to Virtual Reality (VR) environments to make rehabilitation exercises more engaging, interactive, and psychologically rewarding for the patient.</div>
 </div>
 </div>
-
-
+</div>
+</div>
 <!-- ==========================================
      SLIDE 14 — TEAM
 ============================================== -->
 <div class="swiper-slide">
-<div class="sc">
-  <div class="col" style="height:100%;justify-content:center;gap:1.1rem">
-
-    <!-- Header -->
-    <div class="au" style="display:flex;align-items:center;justify-content:space-between">
-      <div>
-        <span class="tag"><i class="ph-fill ph-users-three"></i> Work Team</span>
-        <h2 class="ttl">The <span class="acc">People</span> Behind the Glove</h2>
-      </div>
-      <div style="text-align:right;color:var(--g500);font-size:.82rem">
-        <div style="font-family:var(--fh);font-weight:900;font-size:2.5rem;color:var(--orange);line-height:1">15</div>
+<div class="sc" data-tilt="">
+<div class="col" style="height:100%;justify-content:center;gap:1.1rem">
+<!-- Header -->
+<div class="au" style="display:flex;align-items:center;justify-content:space-between">
+<div>
+<span class="tag"><i class="ph-fill ph-users-three"></i> Work Team</span>
+<h2 class="ttl anim">The <span class="acc">People</span> Behind the Glove</h2>
+</div>
+<div style="text-align:right;color:var(--g500);font-size:.82rem">
+<div style="font-family:var(--fh);font-weight:900;font-size:2.5rem;color:var(--orange);line-height:1">15</div>
         Team Members
       </div>
-    </div>
-
-    <!-- Supervisors -->
-    <div class="au" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;transition-delay:.1s">
-      <div class="card card-p" style="display:flex;align-items:center;gap:12px">
-        <div class="ci ci-sm ci-rnd"><i class="ph-fill ph-chalkboard-teacher"></i></div>
-        <div><div style="font-size:.68rem;color:var(--g500);text-transform:uppercase;letter-spacing:1px">Project Supervisor</div><div style="font-family:var(--fh);font-weight:700;font-size:.9rem">Dr. Essam Nabil</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:center;gap:12px">
-        <div class="ci ci-sm ci-rnd"><i class="ph-fill ph-crown"></i></div>
-        <div><div style="font-size:.68rem;color:var(--g500);text-transform:uppercase;letter-spacing:1px">Head of Department</div><div style="font-family:var(--fh);font-weight:700;font-size:.9rem">Dr. Ghada El-Banby</div></div>
-      </div>
-      <div class="card card-p" style="display:flex;align-items:center;gap:12px">
-        <div class="ci ci-sm ci-rnd"><i class="ph-fill ph-buildings"></i></div>
-        <div><div style="font-size:.68rem;color:var(--g500);text-transform:uppercase;letter-spacing:1px">Institution</div><div style="font-family:var(--fh);font-weight:700;font-size:.85rem">Menoufia University</div></div>
-      </div>
-    </div>
-
-    <!-- Team members grid -->
-    <div class="au" style="display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;transition-delay:.2s">
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">AI</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Ahmed Ibrahim Helmy Mohamed</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">AS</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Ahmed Saad Mahmoud Attiatallah</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">AM</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Ahmed Mohamed Mohamed Ismail</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">AA</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Ahmed Ayman Ahmed El-Sayed</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Ab</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Abdelhamid Mohamed Abdelhamid</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Am</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Amira Hassan Mahmoud Ahmed</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Az</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Aziza Hamed Omar El-Sayed</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">As</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Asmaa Saeed Mohamed Abdellatif</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">HF</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Hady Fawzy Awad Gad</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Sh</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Shehab Mohamed Ahmed Morsi</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">MF</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Mohamed Fouad Ahmed Roshdy</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">MK</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Mohamed Kamal Mohamed Ahmed</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">MW</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Mohamed Wael Mohamed Hefny</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">MA</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Mohamed Ahmed Mahmoud Abdo</div>
-      </div>
-      <div class="card card-p" style="text-align:center;padding:.9rem .7rem">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Ne</div>
-        <div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Nermeen Abdel Sattar Awad</div>
-      </div>
-    </div>
-
-    <!-- Thanks -->
-    <div class="au" style="padding:14px 22px;background:var(--black);border-radius:var(--rs);border:1px solid rgba(249,115,22,.3);text-align:center;transition-delay:.3s">
-      <p style="color:rgba(255,255,255,.82);font-size:.87rem">
+</div>
+<!-- Supervisors -->
+<div class="au" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;transition-delay:.1s">
+<div class="card card-p" data-tilt="" style="display:flex;align-items:center;gap:12px">
+<div class="ci ci-sm ci-rnd"><i class="ph-fill ph-chalkboard-teacher"></i></div>
+<div><div style="font-size:.68rem;color:var(--g500);text-transform:uppercase;letter-spacing:1px">Project Supervisor</div><div style="font-family:var(--fh);font-weight:700;font-size:.9rem">Dr. Essam Nabil</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:center;gap:12px">
+<div class="ci ci-sm ci-rnd"><i class="ph-fill ph-crown"></i></div>
+<div><div style="font-size:.68rem;color:var(--g500);text-transform:uppercase;letter-spacing:1px">Head of Department</div><div style="font-family:var(--fh);font-weight:700;font-size:.9rem">Dr. Ghada El-Banby</div></div>
+</div>
+<div class="card card-p" data-tilt="" style="display:flex;align-items:center;gap:12px">
+<div class="ci ci-sm ci-rnd"><i class="ph-fill ph-buildings"></i></div>
+<div><div style="font-size:.68rem;color:var(--g500);text-transform:uppercase;letter-spacing:1px">Institution</div><div style="font-family:var(--fh);font-weight:700;font-size:.85rem">Menoufia University</div></div>
+</div>
+</div>
+<!-- Team members grid -->
+<div class="au" style="display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;transition-delay:.2s">
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">AI</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Ahmed Ibrahim Helmy Mohamed</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">AS</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Ahmed Saad Mahmoud Attiatallah</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">AM</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Ahmed Mohamed Mohamed Ismail</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">AA</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Ahmed Ayman Ahmed El-Sayed</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Ab</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Abdelhamid Mohamed Abdelhamid</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Am</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Amira Hassan Mahmoud Ahmed</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Az</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Aziza Hamed Omar El-Sayed</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">As</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Asmaa Saeed Mohamed Abdellatif</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">HF</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Hady Fawzy Awad Gad</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Sh</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Shehab Mohamed Ahmed Morsi</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">MF</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Mohamed Fouad Ahmed Roshdy</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">MK</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Mohamed Kamal Mohamed Ahmed</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">MW</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Mohamed Wael Mohamed Hefny</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">MA</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Mohamed Ahmed Mahmoud Abdo</div>
+</div>
+<div class="card card-p" data-tilt="" style="text-align:center;padding:.9rem .7rem">
+<div style="width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;margin:0 auto .6rem">Ne</div>
+<div style="font-size:.68rem;font-weight:600;color:var(--g700);line-height:1.3">Nermeen Abdel Sattar Awad</div>
+</div>
+</div>
+<!-- Thanks -->
+<div class="au" style="padding:14px 22px;background:var(--black);border-radius:var(--rs);border:1px solid rgba(249,115,22,.3);text-align:center;transition-delay:.3s">
+<p class="anim" style="color:rgba(255,255,255,.82);font-size:.87rem">
         Special thanks to <strong style="color:var(--orange)">Dr. Ghada El-Banby</strong> for her distinguished leadership of the Medical Equipment Department. 
         Thank you all for your invaluable support and dedication. 🙏
       </p>
-    </div>
-
-  </div>
 </div>
 </div>
-
+</div>
+</div>
 </div><!-- swiper-wrapper -->
 <div class="swiper-pagination"></div>
 </div><!-- swiper -->
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
@@ -1277,6 +1217,60 @@ function animateSlide(slide) {
         gsap.fromTo(bar, { width: '0%' }, { width: target, duration: 1.1, ease: 'power2.out', delay: .45 });
     });
 }
+</script>
+
+<script>
+if (typeof particlesJS !== 'undefined') {
+    particlesJS('particles-js', {
+        "particles": {
+            "number": {"value": 50, "density": {"enable": true, "value_area": 800}},
+            "color": {"value": "#f97316"},
+            "shape": {"type": "circle"},
+            "opacity": {"value": 0.4, "random": true},
+            "size": {"value": 3, "random": true},
+            "line_linked": {"enable": true, "distance": 150, "color": "#f97316", "opacity": 0.3, "width": 1},
+            "move": {"enable": true, "speed": 1.5}
+        },
+        "interactivity": { "events": {"onhover": {"enable": true, "mode": "grab"}}, "modes": {"grab": {"distance": 140, "line_linked": {"opacity": 0.6}}} },
+        "retina_detect": true
+    });
+}
+
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
+window.addEventListener('mousemove', function(e) {
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top = e.clientY + 'px';
+    if(cursorOutline.animate) {
+        cursorOutline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 250, fill: "forwards" });
+    } else {
+        cursorOutline.style.left = e.clientX + 'px'; cursorOutline.style.top = e.clientY + 'px';
+    }
+});
+
+const themeBtn = document.getElementById('theme-toggle');
+themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const icon = themeBtn.querySelector('i');
+    if(document.body.classList.contains('dark-mode')) {
+        icon.classList.replace('ph-moon', 'ph-sun');
+        icon.style.color = '#fff';
+    } else {
+        icon.classList.replace('ph-sun', 'ph-moon');
+        icon.style.color = '#333';
+    }
+});
+
+setTimeout(() => {
+    if(window.swiper) {
+        window.swiper.on('slideChangeTransitionStart', function() {
+            if(typeof gsap !== 'undefined') gsap.to('.swiper-slide:not(.swiper-slide-active) .anim', { y: 20, opacity: 0, duration: 0.3 });
+        });
+        window.swiper.on('slideChangeTransitionEnd', function() {
+            if(typeof gsap !== 'undefined') gsap.to('.swiper-slide-active .anim', { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: 'back.out(1.2)' });
+        });
+    }
+}, 1000);
 </script>
 </body>
 </html>
